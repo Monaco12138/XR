@@ -2,6 +2,19 @@
 
 # 实时超分辨率传输样机实现
 
+## 目录
+* [环境安装与部署](#环境安装与部署)
+    * [语言和基础环境](#语言和基础环境)
+    * [模型训练推理相关环境](#模型训练推理相关环境)
+    * [视频编解码相关环境](#视频编解码相关环境)
+    * [第三方开源库](#第三方开源库)
+* [文件代码目录](#文件代码目录)
+    * [推流端](#推流端)
+    * [播放端](#播放端)
+* [基本使用](#基本使用)
+    * [编译](#编译)
+    * [运行](#运行)
+    
 ## 环境安装与部署
 
 #### 语言和基础环境
@@ -10,7 +23,7 @@
 * gcc 9.4.0
 * cmake 3.16.3
 
-#### SR模型训练推理相关环境
+#### 模型训练推理相关环境
 * cuda11.3.0: 需要去[NVIDIA官网](https://developer.nvidia.com/cuda-toolkit-archive)下载cuda11.3，选择runfile版本
 * [cudnn v8.2.1](https://developer.nvidia.com/rdp/cudnn-archive):  下载完毕后根据[指导](https://docs.nvidia.com/deeplearning/cudnn/archives/index.html)安装即可，老版本要下载3个deb包
 * [libtorch](https://pytorch.org/get-started/locally/) (cxx11 ABI) 对应cuda11.3版本，注意下载时要下stable-> linux-> libtorch-> c++/java-> cuda11.3-> cxx11 ABI版本

@@ -57,3 +57,13 @@
 |-- main_streamplayer.cpp   \\播放端入口
 |-- Streamplayer.cpp        \\播放器类的实现
 ```
+## 基本使用
+#### 编译
+1. 以推流端为例，先进入./build目录
+2. 执行命令
+    ```
+    cmake ..
+    cmake --build . --config Release
+    ```
+3. 生成可执行文件即可运行./demo_broadcaster
+4. 可随时修改配置文件option.toml里的内容来进行不同的设置，不需要再次编译

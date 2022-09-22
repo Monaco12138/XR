@@ -29,16 +29,31 @@
 
 ## 文件代码目录
 #### 推流端
-\|-- build  
-\|-- model  
-\|---- \|--  pretrain model  
-\|-- Broadcaster.cpp  
-\|-- Broadcaster.h  
-\|-- CMakeLists.txt  
-\|-- main_broadcaster.cpp  
-\|-- OnlineTraining.h  
-\|-- option.toml  
-\|-- PatchImgDataset.h  
-\|-- Setting.h  
-\|-- Utils.h
+```c
+|-- build  
+|-- model  
+|   |--  pretrain model  
+|-- CMakeLists.txt  
+|-- option.toml             \\配置文件
+|-- Utils.h
+|-- Setting.h               \\读取配置文件
+|-- Broadcaster.h           \\定义推流端类
+|-- Broadcaster.cpp         \\推流端类的实现
+|-- main_broadcaster.cpp    \\推流端入口
+|-- OnlineTraining.h        \\在线训练类及其实现
+|-- PatchImgDataset.h       \\训练数据集设置
+```
 
+#### 播放端
+```c
+|-- build  
+|-- model  
+|   |--  pretrain model  
+|-- CMakeLists.txt
+|-- option.toml             \\配置文件
+|-- Utils.h
+|-- Setting.h               \\读取配置文件
+|-- Streamplayer.h          \\定义播放器类
+|-- main_streamplayer.cpp   \\播放端入口
+|-- Streamplayer.cpp        \\播放器类的实现
+```

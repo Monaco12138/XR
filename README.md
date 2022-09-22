@@ -1,3 +1,5 @@
+<img src="https://github.com/Monaco12138/XR/blob/main/photo/framework3.png" width="100%">  
+
 # 实时超分辨率传输样机实现
 
 ## 环境安装与部署

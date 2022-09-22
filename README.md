@@ -27,8 +27,19 @@
 * boost/lockfree/spsc_queue.hpp: 引入支持单个生产者和单个消费者的无锁队列
 * [httplib.h](https://github.com/yhirose/cpp-httplib): http 请求服务
 * [toml11](https://github.com/ToruNiina/toml11): 配置文件的读取
-* [rtsp-simple-server](https://github.com/aler9/rtsp-simple-server)：一个零依赖的即用型服务代理，允许用户通过多种协议发布，读取和代理实时的音视频流
-
+* [rtsp-simple-server](https://github.com/aler9/rtsp-simple-server)：一个零依赖的即用型服务代理，允许用户通过多种协议发布，读取和代
+理实时的音视频流  
+    1. 建议修改配置文件 rtsp-simple-server.yml 的默认配置，因为默认配置设置缓存及处理时间太小，当推流端推流太快时，会造成包丢失，而接收端若发现对应的包含I帧的包丢失，则会将这整个BOP的包全部丢弃，直到接收下一个I帧为止。这样可能造成的问题有：  1. 接收端在发送端未结束时就提前结束，2. 接收端得到的画面卡顿，跳跃。
+    2. 修改默认配置如下:
+        ```python
+        # Timeout of read operations.
+        readTimeout: 3600s
+        # Timeout of write operations.
+        writeTimeout: 3600s
+        # Number of read buffers.
+        # A higher number allows a wider throughput, a lower number allows to save RAM.
+        readBufferCount: 2048
+        ```
 ## 文件代码目录
 #### 推流端
 ```c

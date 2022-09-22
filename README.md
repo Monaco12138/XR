@@ -26,3 +26,19 @@
 * [httplib.h](https://github.com/yhirose/cpp-httplib): http 请求服务
 * [toml11](https://github.com/ToruNiina/toml11): 配置文件的读取
 * [rtsp-simple-server](https://github.com/aler9/rtsp-simple-server)：一个零依赖的即用型服务代理，允许用户通过多种协议发布，读取和代理实时的音视频流
+
+## 文件代码目录
+#### 推流端
+\|-- build  
+\|-- model  
+\|---- \|--  pretrain model  
+\|-- Broadcaster.cpp  
+\|-- Broadcaster.h  
+\|-- CMakeLists.txt  
+\|-- main_broadcaster.cpp  
+\|-- OnlineTraining.h  
+\|-- option.toml  
+\|-- PatchImgDataset.h  
+\|-- Setting.h  
+\|-- Utils.h
+

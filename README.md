@@ -26,7 +26,8 @@
 #### 第三方开源库
 * boost/lockfree/spsc_queue.hpp: 引入支持单个生产者和单个消费者的无锁队列
 * [httplib.h](https://github.com/yhirose/cpp-httplib): http 请求服务
-* [toml11](https://github.com/ToruNiina/toml11): 配置文件的读取
+* [toml11](https://github.com/ToruNiina/toml11): 配置文件的读取  
+    1. 下载后解压至/usr/local目录，并设置好CMakeLists.txt中的路径
 * [rtsp-simple-server](https://github.com/aler9/rtsp-simple-server)：一个零依赖的即用型服务代理，允许用户通过多种协议发布，读取和代
 理实时的音视频流  
     1. 建议修改配置文件 rtsp-simple-server.yml 的默认配置，因为默认配置设置缓存及处理时间太小，当推流端推流太快时，会造成包丢失，而接收端若发现对应的包含I帧的包丢失，则会将这整个BOP的包全部丢弃，直到接收下一个I帧为止。这样可能造成的问题有：  1. 接收端在发送端未结束时就提前结束，2. 接收端得到的画面卡顿，跳跃。
@@ -72,14 +73,41 @@
 ```
 ## 基本使用
 #### 编译
-1. 以推流端为例，先进入./build目录
+以推流端为例CMakeLists.txt文件内容如下：
+```cmake
+cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
+#设置环境
+set(CMAKE_CUDA_ARCHITECTURES 60 61 62 70 72 75 86)
+set(CMAKE_CUDA_COMPILER /usr/local/cuda-11.3/bin/nvcc)
+#项目名称demo_broadcaster
+project(demo_broadcaster)
+find_package(PythonInterp REQUIRED)
+#配置libtorch路径
+set(Torch_DIR /usr/local/libtorch/share/cmake/Torch)
+#找到torch包
+find_package(Torch REQUIRED)
+#找opencv包
+find_package(OpenCV REQUIRED)
+include_directories(${OpenCV_INCLUED_DIRS})
+#包含添加toml11配置文件信息
+include_directories("/usr/local/toml11-master")
+
+add_executable(demo_broadcaster main_broadcaster.cpp Broadcaster.cpp)
+#链接
+target_link_libraries(demo_broadcaster ${TORCH_LIBRARIES})
+target_link_libraries(demo_broadcaster pthread)
+target_link_libraries(demo_broadcaster avcodec avformat swresample avutil swscale)
+target_link_libraries(demo_broadcaster ${OpenCV_LIBS})
+```
+1. 先进入./build目录
 2. 执行命令
     ```
     cmake ..
     cmake --build . --config Release
     ```
 3. 生成可执行文件即可运行./demo_broadcaster
-4. 可随时修改配置文件option.toml里的内容来进行不同的设置，不需要再次编译
+4. 可修改配置文件option.toml里的内容来进行不同的设置，不需要再次编译
+
 
 #### 运行
 运行时将推流端和RTSP server 部署在A服务器上，播放端部署在B服务器上

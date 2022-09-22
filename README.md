@@ -11,10 +11,10 @@
 * cmake 3.16.3
 
 #### SR模型训练推理相关环境
-* cuda11.3: 需要去NVIDIA官网下载cuda11.3，选择runfile版本
-* cudnn v8.2.1:  下载完毕后根据指导安装即可，老版本要下载3个deb包
-* libtorch (cxx11 ABI) 对应cuda11.3版本
-* opencv-4.x 下载完后需要手动编译安装
+* cuda11.3.0: 需要去[NVIDIA官网](https://developer.nvidia.com/cuda-toolkit-archive)下载cuda11.3，选择runfile版本
+* [cudnn v8.2.1](https://developer.nvidia.com/rdp/cudnn-archive):  下载完毕后根据[指导](https://docs.nvidia.com/deeplearning/cudnn/archives/index.html)安装即可，老版本要下载3个deb包
+* [libtorch](https://pytorch.org/get-started/locally/) (cxx11 ABI) 对应cuda11.3版本，注意下载时要下stable-> linux-> libtorch-> c++/java-> cuda11.3-> cxx11 ABI版本
+* [opencv-4.x](https://docs.opencv.org/4.x/d7/d9f/tutorial_linux_install.html) 下载完后需要手动编译安装
 
 #### 视频编解码相关环境
 * libavcodec

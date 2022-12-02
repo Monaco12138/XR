@@ -1,0 +1,51 @@
+[Url]
+hr_video_input = "/home/ubuntu/data/main/ffmpeg/videos/video_2160p_30000kbps.mp4"
+rtsp_server = "rtsp://localhost:8554/mystream"
+http_server = "172.18.167.38:51003"
+
+[OnlineTraining]
+sample_interval = 10
+training_cycle = 120
+sampling_cycle = 90
+cuda = [0,1]
+pretrain_model_path = "/home/ubuntu/ffmpeg/Online-demo/demo_broadcaster/model/ultra_x2_cuda11_3.ts"
+
+init_lr = 1.5e-4
+lr_decay_epoch = 5000
+lr_decay_rate = 0.5
+weight_decay = 0.0
+
+training_epoch_num = 6
+batch_size = 128
+patch_size = 48
+dataset_repeat = 256
+scale = 2
+
+[Video]
+bit_rate = 6000
+preset = "slow"
+
+#hr_video_input 原始高清视频源地址
+#rtsp_server    RTSP服务器监听地址
+#http_server    http服务地址，用于将模型传递到播放端的http服务器上
+
+#sample_interval    采样间隔，每隔sample_interval取一帧用于在线训练
+#training_cycle     训练周期的帧数，如120帧为一个训练周期
+#sampling_cycle     采样周期的帧数，如90帧为一个采样周期，这样剩余的30帧时间用于等待训练和传递模型
+#cuda               可使用的GPU编号
+#pretrain_model_path    预训练模型保持位置
+
+#init_lr            初始的学习率
+#lr_decay_epoch     每隔训练这么多次调整一下学习率
+#lr_decay_rate      学习率衰减权重
+#weight_decay       权重衰减因子
+
+#training_epoch_num 每个训练周期总的训练epoch
+#batch_size         总的batch_size大小，每个GPU分配的batch_size = 总的batch_size / gpu数目
+#patch_size         训练采用的图像大小默认48*48
+#dataset_repeat     训练的数据集重复次数，每个周期训练数据集大小 = (sampling_cycle/sample_interval) * dataset_repeat
+#scale              缩小的倍数，我们读取视频为4K视频，推流的为1080p视频，故缩小倍数为2
+
+#bit_rate           编码低清视频的码率，单位kbps
+#preset             编码预设等级从低到高: ultrafast, superfast, veryfast, faster, fast, medium, slow, slower, veryslow, placebo
+#                    等级越高画面质量越好，编码越慢

@@ -1,0 +1,38 @@
+[Url]
+rtsp_server = "rtsp://172.18.166.98:51002/mystream"
+video_output_path = "/home/ubuntu/data/main/ffmpeg/save_videos/video2_final_6eochs_480sizes_6000kbps.mp4"
+http_port   = 9090
+
+[OnlineTraining]
+sample_interval = 10
+pretrain_model_path = "/home/ubuntu/ffmpeg/Online-demo/demo_broadcaster/model/ultra_x2_cuda11_3.ts"
+cuda = [0,1,2,3]
+
+[Player]
+is_test_psnr = true
+
+is_show = true
+is_save_video = false
+
+[Video]
+height = 2160
+width = 3840
+FPS = 30
+bit_rate = 100000
+
+
+#rtsp_server    RTSP服务器监听地址，从此处拉流
+#video_output_path  当is_save_video为true时，保存编码后的4K视频的路径
+#http_port          http服务器监听端口，需和推流端的请求端口一致
+
+#sample_interval    采样间隔，每隔sample_interval输出解码帧的序号
+#cuda               可使用的GPU编号，需确保数量恰好为4
+#pretrain_model_path    预训练模型保持位置
+
+#is_test_psnr       为true的话会保存SR后的帧和输入的低清帧供后续评测
+#is_show            为true表示实时播放推流画面
+#is_save_video      为true表示存储编码后的高清视频
+
+
+#bit_rate           编码保存SR后的4K视频的码率，越高越好，以减少编码带来的损失，单位kbps
+#height,width，FPS             4K视频的基本信息
